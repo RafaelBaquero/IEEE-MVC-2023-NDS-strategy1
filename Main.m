@@ -70,7 +70,7 @@ gainLatAcc = 0.2699; % in [0, 0.5]
 biasLatAcc = 0.5; % in [0.2, 0.8]
 
 baseLogAcc = 2.5459; % in [0.1, 6.0]
-gainLogAcc = 0; % in [-0.5, 0]
+gainLogAcc = -0.1178; % in [-0.5, 0]
 gainLogAcc2 = -0.2492; % in [0, 0.5]
 biasLogAcc = 0.5425; % in [0.2, 0.8]
 
