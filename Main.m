@@ -63,42 +63,13 @@ param.EMAbaseline.kfc       = 0.8;                                          % fu
 param.EMAbaseline.ktv       = 0.5;                                          % torque vectoring ratio
 param.EMAbaseline.a_ad      = 0.5;                                          % front/rear ratio
 
-%% Mechanical parameters
-
-baseLatAcc = 1.5837; % in [0.1, 6.4]
-gainLatAcc = 0.2699; % in [0, 0.5]
-biasLatAcc = 0.5; % in [0.2, 0.8]
-
-baseLogAcc = 2.5459; % in [0.1, 6.0]
-gainLogAcc = -0.1178; % in [-0.5, 0]
-gainLogAcc2 = -0.2492; % in [0, 0.5]
-biasLogAcc = 0.5425; % in [0.2, 0.8]
-
-simIn = Simulink.SimulationInput('testEnergyManagementAlgorithm'); % Check here!!
-simIn = setVariable(simIn,'Tend',Tend);
-
-% GWO optimization results
-% 1.5837    0.2699    0.4716    2.5459   -0.1178   -0.2492    0.5425
-
-simIn = setVariable(simIn,'baseLatAcc',baseLatAcc);
-simIn = setVariable(simIn,'gainLatAcc',gainLatAcc);
-simIn = setVariable(simIn,'biasLatAcc',biasLatAcc); % Load lateral acc values
-
-simIn = setVariable(simIn,'baseLogAcc',baseLogAcc);
-simIn = setVariable(simIn,'gainLogAcc',gainLogAcc);
-simIn = setVariable(simIn,'baseLogAcc2',gainLogAcc2); 
-simIn = setVariable(simIn,'biasLogAcc',biasLogAcc); % Load longitudinal acc values
-
 %% Main simulation
 fprintf('Please wait until the simulation is completed...\n\n')
 tic;
-% out = sim('testEnergyManagementAlgorithm.slx','StopTime',num2str(Tend));
-out = sim(simIn);
+out = sim('testEnergyManagementAlgorithm.slx','StopTime',num2str(Tend));
 sim_time = toc;
 fprintf('Success!\t Total simulation time is: \t %d seconds\n',sim_time)
 fprintf('Please check the auto-generated html report for further evaluation of your designed EMA.\n')
-
-fprintf('Remember to export .slx to 2021b!!\n')
 
 %% Reporting (The following lines must remain unchanged)
 Results;
